@@ -50,7 +50,7 @@ export default function CategoryGrid() {
             >
               {/* আইকন বক্স */}
               <div className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:scale-110 ${cat.color}`}>
-                {React.cloneElement(cat.icon as React.ReactElement, { size: 32 })}
+                {React.cloneElement(cat.icon as React.ReactElement<{ size: number }>, { size: 32 })}
               </div>
               
               {/* নাম */}
