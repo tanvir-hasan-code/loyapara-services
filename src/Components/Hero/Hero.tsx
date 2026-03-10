@@ -13,7 +13,7 @@ const banners = [
   },
   {
     id: 2,
-    image: "https://cdn.pixabay.com/photo/2021/06/16/07/40/village-6340511_640.jpg",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMKeFYMXQ4bk6KNaKuQHe8Y6J3XH-q3YMIqw&sg",
     title: "সেরা মিস্ত্রি খুঁজে নিন",
     subtitle: "নির্ভরযোগ্য এবং দক্ষ কারিগর",
   },

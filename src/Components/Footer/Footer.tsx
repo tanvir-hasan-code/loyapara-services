@@ -44,7 +44,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={18} className="text-primary shrink-0" />
-                <span>+৮৮০ ১৭৯৬২৫৫২১৩</span> 
+                <span>+৮৮০ ১৭৯৬২৫৫২১৩ (তানভীর)</span> 
               </li>
             </ul>
           </div>

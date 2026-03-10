@@ -1,59 +1,77 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Phone, MapPin, Wrench } from 'lucide-react'; // আইকনের জন্য
+import { usePathname } from 'next/navigation'; // এটি প্রয়োজন
+import { MapPin } from 'lucide-react';
+import ComplaintModal from '../ComplaintModal/ComplaintModal';
 
 const Navbar: React.FC = () => {
-const navItems = (
+	const pathname = usePathname();
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // একটিভ পাথ চেক করার ফাংশন
+  const isActive = (path: string) => pathname === path;
+
+  const navItems = (
     <>
-      <li><Link href="/">হোম</Link></li>
       <li>
-        <details className="lg:static">
+        <Link 
+          href="/" 
+          className={isActive('/') ? " border-b-2 font-bold rounded-none border-primary " : ""}
+        >
+          হোম
+        </Link>
+      </li>
+      <li>
+        <details className="lg:static group">
           <summary className="font-bold text-primary">সকল সার্ভিসসমূহ</summary>
-          <ul className="p-2 bg-base-100 w-64 z-[50] shadow-2xl border border-base-200 max-h-[70vh] overflow-y-auto">
-            {/* ঘরবাড়ি নির্মাণ */}
-            <li className="menu-title text-gray-500">নির্মাণ ও মেরামত</li>
-            <li><Link href="/raj-mistri">🧱 রাজমিস্ত্রি</Link></li>
-            <li><Link href="/wood-mistri">🪑 কাঠমিস্ত্রি (ফার্নিচার)</Link></li>
-            <li><Link href="/welding">⚒️ ওয়েল্ডিং মিস্ত্রি</Link></li>
-            <li><Link href="/tiles-mistri">💎 টাইলস মিস্ত্রি</Link></li>
-            <li><Link href="/painter">🎨 রঙ মিস্ত্রি</Link></li>
+          <ul className="p-2 bg-base-100 w-72 z-[50] shadow-2xl border border-base-200 max-h-[80vh] overflow-y-auto">
+            
+            <li className="menu-title text-gray-500 mt-2">নির্মাণ ও মেরামত</li>
+            <li><Link href="/raj-mistri" className={isActive('/raj-mistri') ? "bg-primary text-white" : ""}>🧱 রাজমিস্ত্রি</Link></li>
+            <li><Link href="/welding" className={isActive('/welding') ? "bg-primary text-white" : ""}>⚒️ ওয়েল্ডিং মিস্ত্রি</Link></li>
+            <li><Link href="/plumber" className={isActive('/plumber') ? "bg-primary text-white" : ""}>🚰 পাইপ ফিটিং (প্লাম্বার)</Link></li>
 
-            {/* ইলেকট্রনিক্স ও যন্ত্রপাতি */}
             <div className="divider my-0"></div>
-            <li className="menu-title text-gray-500">ইলেকট্রনিক্স ও মেকার</li>
-            <li><Link href="/electrician">⚡ ইলেকট্রিশিয়ান (হাউজ ওয়ারিং)</Link></li>
-            <li><Link href="/electronics-maker">📻 ইলেকট্রনিক্স মেকার (ফ্যান, রাইস কুকার)</Link></li>
-            <li><Link href="/fridge-ac">❄️ ফ্রিজ ও এসি মেকার</Link></li>
-            <li><Link href="/mobile-technician">📱 মোবাইল টেকনিশিয়ান</Link></li>
-            <li><Link href="/computer-repair">💻 কম্পিউটার/ল্যাপটপ মেরামত</Link></li>
+            <li className="menu-title text-gray-500">স্বাস্থ্য ও শিক্ষা</li>
+            <li><Link href="/vet-doctor" className={isActive('/vet-doctor') ? "bg-primary text-white" : ""}>🐄 গরুর ডাক্তার (পশু চিকিৎসক)</Link></li>
+            <li><Link href="/teacher" className={isActive('/teacher') ? "bg-primary text-white" : ""}>👨‍🏫 মাস্টার/শিক্ষক</Link></li>
+            <li><Link href="/homeo-doctor" className={isActive('/homeo-doctor') ? "bg-primary text-white" : ""}>🧪 হোমিও ডাক্তার</Link></li>
 
-            {/* যানবাহন ও ইঞ্জিন */}
             <div className="divider my-0"></div>
             <li className="menu-title text-gray-500">যানবাহন ও ইঞ্জিন</li>
-            <li><Link href="/van-repair">🛺 ভ্যান/অটোরিকশা মেকার</Link></li>
-            <li><Link href="/bike-repair">🏍️ মোটরসাইকেল মেকার</Link></li>
-            <li><Link href="/pump-mistri">💧 পাম্প/মেশিন মিস্ত্রি (সেচ পাম্প)</Link></li>
-            <li><Link href="/cycle-mistri">🚲 সাইকেল মেকার</Link></li>
+            <li><Link href="/van" className={isActive('/van') ? "bg-primary text-white" : ""}>🛺 ভ্যান ও অটোরিকশা</Link></li>
 
-            {/* অন্যান্য */}
+            <div className="divider my-0"></div>
+            <li className="menu-title text-gray-500">ইলেকট্রনিক্স ও মেকার</li>
+            <li><Link href="/electrician" className={isActive('/electrician') ? "bg-primary text-white" : ""}>⚡ ইলেকট্রিশিয়ান (হাউজ ওয়ারিং)</Link></li>
+            <li><Link href="/electronics-maker" className={isActive('/electronics-maker') ? "bg-primary text-white" : ""}>📻 ইলেকট্রনিক্স মেকার</Link></li>
+            <li><Link href="/bike-repair" className={isActive('/bike-repair') ? "bg-primary text-white" : ""}>🏍️ মোটরসাইকেল মেকার</Link></li>
+            <li><Link href="/machine-repair" className={isActive('/machine-repair') ? "bg-primary text-white" : ""}>⚙️ মেশিন/হাল-এর মেকার</Link></li>
+            <li><Link href="/cycle-van-repair" className={isActive('/cycle-van-repair') ? "active" : ""}>🚲 ভ্যান ও সাইকেল মেকার</Link></li>
+
+            <div className="divider my-0"></div>
+            <li className="menu-title text-gray-500">কৃষি ও গৃহস্থালি</li>
+            {/* খেজুরের রস যোগ করা হয়েছে */}
+            <li><Link href="/khejurer-ros" className={isActive('/khejurer-ros') ? "bg-primary text-white" : ""}>🍯 খেজুরের রস</Link></li>
+            <li><Link href="/farmer" className={isActive('/farmer') ? "bg-primary text-white" : ""}>🌾 কৃষক (পরামর্শ ও শ্রমিক)</Link></li>
+            <li><Link href="/household-help" className={isActive('/household-help') ? "bg-primary text-white" : ""}>🏠 গৃহস্থ</Link></li>
+            
             <div className="divider my-0"></div>
             <li className="menu-title text-gray-500">অন্যান্য</li>
-            <li><Link href="/plumber">🚰 প্লাম্বার (পাইপ ও কল)</Link></li>
-            <li><Link href="/tailors">🧵 দর্জি (টেইলার্স)</Link></li>
+            <li><Link href="/tailors" className={isActive('/tailors') ? "bg-primary text-white" : ""}>🧵 দর্জি (টেইলার্স)</Link></li>
           </ul>
         </details>
       </li>
-      <li><Link href="/emergency">জরুরি নম্বর</Link></li>
-      <li><Link href="/about">আমাদের সম্পর্কে</Link></li>
+      <li><Link href="/emergency" className={isActive('/emergency') ? " border-b-2 font-bold rounded-none border-primary " : ""}>জরুরি নম্বর</Link></li>
+      <li><Link href="/about" className={isActive('/about') ? " border-b-2 font-bold rounded-none border-primary " : ""}>আমাদের সম্পর্কে</Link></li>
     </>
   );
 
   return (
     <div className="navbar bg-base-100/80 backdrop-blur-md shadow-sm sticky top-0 z-50 px-2 lg:px-8">
       <div className="navbar-start">
-        {/* মোবাইল ড্রপডাউন */}
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -65,51 +83,80 @@ const navItems = (
           </ul>
         </div>
 
-        {/* লোগো সেকশন */}
         <Link href="/" className="flex items-center gap-2 group">
           <div className="bg-primary p-2 rounded-lg text-white group-hover:rotate-12 transition-transform">
             <MapPin size={24} />
           </div>
-          <span className="text-xl font-black tracking-tighter  sm:block">
+          <span className="text-xl font-black tracking-tighter sm:block text-slate-800">
             লয়াপাড়া<span className="text-primary">সেবা</span>
           </span>
         </Link>
       </div>
 
-      {/* ডেস্কটপ মেনু (সেন্টার) */}
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 font-medium gap-2">
           {navItems}
         </ul>
       </div>
 
-      {/* কন্টাক্ট বাটন এবং ইউজার সেকশন (এন্ড) */}
-      <div className="navbar-end gap-3">
-        {/* সাহায্য বা মেসেজ আইকন */}
-        <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-              </svg>
-              <span className="badge badge-xs badge-primary indicator-item"></span>
-            </div>
-          </div>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow border border-base-200">
-            <li><a>জরুরি সেবার তালিকা</a></li>
-            <li><a>অভিযোগ জানান</a></li>
-          </ul>
-        </div>
-
-        {/* প্রধান অ্যাকশন বাটন */}
-        <Link 
-          href="/add-service" 
-          className="btn btn-primary btn-sm md:btn-md text-white rounded-lg shadow-md hover:shadow-lg transition-all"
-        >
-          <span className="hidden sm:inline">লিস্টিং যোগ করুন</span>
-          <span className="sm:hidden">+ যোগ</span>
-        </Link>
+<div className="navbar-end gap-3">
+  <div className="dropdown dropdown-end">
+    {/* হেল্প আইকন বাটন */}
+    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle text-slate-600 bg-slate-100/50 hover:bg-primary/10 hover:text-primary transition-all duration-300">
+      <div className="indicator">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span className="badge badge-xs badge-primary indicator-item ring-2 ring-white"></span>
       </div>
+    </div>
+
+    {/* ড্রপডাউন কন্টেন্ট */}
+    <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-[28px] z-[60] mt-4 w-72 p-4 shadow-[0_20px_50px_rgba(0,0,0,0.15)] border border-slate-100 text-slate-700 animate-in fade-in zoom-in duration-200">
+      
+      {/* হারিয়ে যাওয়া বা পাওয়া বাটন */}
+      <li className="mb-2">
+        <Link href="/lostFound" className="flex items-center gap-4 p-4 hover:bg-indigo-50 text-indigo-700 font-bold rounded-2xl transition-all group border border-transparent hover:border-indigo-100">
+          <div className="bg-indigo-100 p-2.5 rounded-xl group-hover:bg-indigo-200 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8a3 3 0 0 0-3 3"/></svg>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[15px] leading-tight">হারিয়ে যাওয়া বা পাওয়া</span>
+            <span className="text-[10px] font-medium text-indigo-400 mt-0.5">দরকারি জিনিসের খোঁজ দিন</span>
+          </div>
+        </Link>
+      </li>
+
+      <div className="divider opacity-40 my-1 px-4"></div>
+
+      {/* অভিযোগ জানান বাটন */}
+      <li>
+        <button 
+          onClick={() => setIsModalOpen(true)}
+          className="flex items-center gap-4 p-4 hover:bg-rose-50 text-rose-600 font-bold rounded-2xl transition-all group w-full border border-transparent hover:border-rose-100"
+        >
+          <div className="bg-rose-100 p-2.5 rounded-xl group-hover:bg-rose-200 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="m4.93 4.93 14.14 14.14"/><path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          </div>
+          <div className="flex flex-col text-left">
+            <span className="text-[15px] leading-tight">অভিযোগ জানান</span>
+            <span className="text-[10px] font-medium text-rose-400 mt-0.5">সেবা নিয়ে মতামত দিন</span>
+          </div>
+        </button> 
+      </li>
+    </ul>
+  </div>
+
+  {/* লিস্টিং যোগ করুন বাটন */}
+  <Link 
+    href="/addService" 
+    className={`btn btn-primary btn-sm md:btn-md text-white rounded-xl shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95 flex items-center gap-2 ${isActive('/addService') ? 'ring-2 ring-primary ring-offset-2' : ''}`}
+  >
+    <span className="hidden sm:inline">লিস্টিং যোগ করুন</span>
+    <span className="sm:hidden">+ যোগ</span>
+  </Link>
+</div>
+		  <ComplaintModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 };
