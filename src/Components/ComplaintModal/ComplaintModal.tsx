@@ -12,19 +12,32 @@ type ComplaintValues = {
 };
 
 export default function ComplaintModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ComplaintValues>();
 
+
   useEffect(() => {
-    setMounted(true);
+    const frame = requestAnimationFrame(() => {
+      setMounted(true);
+    });
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  
+  useEffect(() => {
+    if (!mounted) return; 
+
     if (isOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-    return () => { document.body.style.overflow = 'unset'; };
-  }, [isOpen]);
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen, mounted]);
 
   const onSubmit = (data: ComplaintValues) => {
     console.log("Complaint Data:", data);

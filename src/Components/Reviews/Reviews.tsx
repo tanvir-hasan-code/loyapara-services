@@ -77,7 +77,7 @@ export default function Reviews() {
 
               {/* কমেন্ট */}
               <p className="text-slate-600 leading-relaxed mb-8 relative z-10 italic">
-                "{review.comment}"
+                {review.comment}
               </p>
 
               {/* ইউজার প্রোফাইল */}
