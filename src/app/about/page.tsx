@@ -21,7 +21,7 @@ export default function AboutPage() {
       className="min-h-screen text-white selection:bg-primary selection:text-black overflow-hidden bg-cover bg-center bg-fixed"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1684689917861-a62ccfeff7e4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dmlsbGFnZSUyMGJhbmdsYWRlc2h8ZW58MHwwfDB8fHww')",
+          "linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://i.ibb.co.com/Y7R77PPZ/loyapara.jpg')",
       }}
     >
       {/* ১. কসমিক হিরো সেকশন */}

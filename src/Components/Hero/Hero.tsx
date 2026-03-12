@@ -7,7 +7,7 @@ import { Search, MapPin, Wrench, Truck, ChevronLeft, ChevronRight } from 'lucide
 const banners = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1442544213729-6a15f1611937?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "https://i.ibb.co.com/Y7R77PPZ/loyapara.jpg",
     title: "লয়াপাড়ার সকল সার্ভিস",
     subtitle: "এখন হাতের মুঠোয়",
   },
