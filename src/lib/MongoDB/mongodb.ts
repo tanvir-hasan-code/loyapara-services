@@ -1,14 +1,12 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
-import * as dotenv from 'dotenv';
-
-dotenv.config();
 
 const uri: string | undefined = process.env.MONGODB_URI;
 
-console.log(uri)
+// console.log(uri)
 
 if (!uri) {
 	throw new Error('Please define the MONGODB_URI environment variable inside .env');
+	// console.log("MISSING URI")
 }
 const dbConnect = (collectionName: string) => {
 const client = new MongoClient(uri, {

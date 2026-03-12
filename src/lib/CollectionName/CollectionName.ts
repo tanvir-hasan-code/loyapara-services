@@ -1,0 +1,18 @@
+export enum collectionName  {
+	FARMER = 'farmer',
+	COWDOCTOR = 'cowDoctor',
+	DATEJUICE = 'dateJuice',
+	ELECTRICAN = 'electrician',
+	ELECTRONICS = 'electronics',
+	HOMEOPATHICDOCTOR = 'homeopathicDoctor',
+	HOUSEHOLDER = 'householder',
+	MOTORCYCLEMECHANIC = 'motorcycleMechanic',
+	PLAMBAR = 'plambar',
+	POWERTILLERMECHANIC = 'powerTillerMechanic',
+	RAJMISTRI = 'rajMistri',
+	TAILOR = 'tailor',
+	TEACHER = 'teacher',
+	VANANDAUTO = 'vanAndAuto',
+	VANCYCLEMECHANIC = 'vanCycleMechanic',
+	WELDING ='welding'
+}
