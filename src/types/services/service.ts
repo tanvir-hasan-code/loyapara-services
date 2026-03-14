@@ -88,7 +88,7 @@ export interface DateJuiceSeller {
   isHomeDelivery: boolean;
   hasGur: boolean; // গুড় পাওয়া যায় কিনা
 }
-export interface Veterinarian {
+export interface CowDoctor {
   _id?: string;
   name: string;
   nickName: string;
@@ -291,3 +291,22 @@ export interface Homeopath {
   visitFee: string;         // ভিজিট ফি (যেমন: "আলোচনা সাপেক্ষে")
   hasMedicine: boolean;     // সরাসরি ঔষধ পাওয়া যায় কিনা
 }
+
+
+export type ServiceMember = 
+  | ElectronicsMaker 
+  | Electrician 
+  | Welder 
+  | AgriLaborer 
+  | DateJuiceSeller 
+  | CowDoctor 
+  | Farmer 
+  | Tailor 
+  | Plumber 
+  | TransportService 
+  | Tutor 
+  | BikeMechanic 
+  | Mason 
+  | CycleVanishMechanic 
+  | MachineryMechanic 
+  | Homeopath;

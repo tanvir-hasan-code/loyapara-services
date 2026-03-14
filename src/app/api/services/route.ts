@@ -39,11 +39,7 @@ export async function GET(request: Request) {
       return matchesCategory && matchesSearch;
     });
 
-    return NextResponse.json({
-      count: filteredData.length,
-      data: filteredData,
-      message: "Data fetching success",
-    });
+    return NextResponse.json(filteredData);
   } catch (error) {
     return NextResponse.json({ error: "Server Error" }, { status: 500 });
   }
