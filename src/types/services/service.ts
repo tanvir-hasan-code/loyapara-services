@@ -162,7 +162,7 @@ export interface Plumber {
   isHomeVisit: boolean;      // বাড়িতে গিয়ে সার্ভিস দেন কিনা
   callTime: string;          // কল করার সময়
 }
-export interface TransportService {
+export interface VanAndAuto {
   _id?: string;
   name: string;
   nickName: string;
@@ -181,7 +181,7 @@ export interface TransportService {
   capacity: string;         // যাত্রী বা মাল বহনের ক্ষমতা (যেমন: "৬ জন যাত্রী / ১২ মন মাল")
   availability: string;      // সময়কাল (যেমন: "ভোর ৬:০০ - রাত ১০:০০")
 }
-export interface Tutor {
+export interface Teacher {
   _id?: string;
   name: string;
   nickName: string;
@@ -259,7 +259,7 @@ export interface MachineryMechanic {
   name: string;
   nickName: string;
   phone: string;
-  category: "মেশিন ও হাল মেকার";
+  category: "মেশিন ও হালের মেকার";
   experience: string;
   location: string;
   speciality: string[];
@@ -291,6 +291,11 @@ export interface Homeopath {
   visitFee: string;         // ভিজিট ফি (যেমন: "আলোচনা সাপেক্ষে")
   hasMedicine: boolean;     // সরাসরি ঔষধ পাওয়া যায় কিনা
 }
+export interface Service {
+  name: string;
+  link: string;
+  icon: string;
+}
 
 
 export type ServiceMember = 
@@ -303,8 +308,8 @@ export type ServiceMember =
   | Farmer 
   | Tailor 
   | Plumber 
-  | TransportService 
-  | Tutor 
+  | VanAndAuto 
+  | Teacher 
   | BikeMechanic 
   | Mason 
   | CycleVanishMechanic 

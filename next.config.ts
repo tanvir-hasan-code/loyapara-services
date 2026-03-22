@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: ['i.ibb.co.com'],
   },
-  reactCompiler: true,
+  reactCompiler: false,
 };
 
 export default nextConfig;

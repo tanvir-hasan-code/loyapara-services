@@ -11,6 +11,11 @@ import HouseHolderCard from "./components/ServiceCard/HouseHolderCard/HouseHolde
 import MotorcycleMechanicCard from "./components/ServiceCard/MotorcycleMechanicCard/MotorcycleMechanicCard";
 import PlumberCard from "./components/ServiceCard/PlambarCard/PlambarCard";
 import PowerTillerMechanicCard from "./components/ServiceCard/PowerTillerMechanicCard/PowerTillerMechanicCard";
+import TailorCard from "./components/ServiceCard/TailorCard/TailorCard";
+import TeacherCard from "./components/ServiceCard/TeacherCard/TeacherCard";
+import VanAndAutoCard from "./components/ServiceCard/VanAndAutoCard/VanAndAutoCard";
+import { VanCycleMechanicCard } from "./components/ServiceCard/VanCycleMechanicCard/VanCycleMechanicCard";
+import { WeldingCard } from "./components/ServiceCard/WeldingCard/WeldingCard";
 
 
 export default async function ServicesPage({
@@ -58,8 +63,19 @@ export default async function ServicesPage({
 			return <MotorcycleMechanicCard key={service._id} data={service} />;
 		case "প্লাম্বার":
 			return <PlumberCard key={service._id} data={service} />;
-		case "মেশিন ও হাল মেকার":
+		case "মেশিন ও হালের মেকার":
 			return <PowerTillerMechanicCard key={service._id} data={service} />;
+		case "দর্জি / টেইলার্স":
+			return <TailorCard key={service._id} data={service} />;
+		case "মাস্টার / গৃহশিক্ষক":
+			return <TeacherCard key={service._id} data={service} />;
+		case "ভ্যান ও অটো সার্ভিস":
+			return <VanAndAutoCard key={service._id} data={service} />;
+		case "ভ্যান ও সাইকেল মেকার":
+			return <VanCycleMechanicCard key={service._id} data={service} />;
+		case "ওয়েল্ডিং মিস্ত্রি":
+			return <WeldingCard key={service._id} data={service} />;
+		
 		
     }
   };
