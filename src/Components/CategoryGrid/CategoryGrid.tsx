@@ -25,22 +25,22 @@ import { motion } from 'framer-motion';
 
 // navItems অনুযায়ী ১৬টি সার্ভিস
 const categories = [
-  { id: 1, name: "রাজমিস্ত্রি", icon: <Hammer />, color: "bg-orange-100 text-orange-600", link: "/raj-mistri" },
-  { id: 2, name: "ওয়েল্ডিং মিস্ত্রি", icon: <Wrench />, color: "bg-slate-100 text-slate-600", link: "/welding" },
-  { id: 3, name: "প্লাম্বার", icon: <Droplets />, color: "bg-cyan-100 text-cyan-600", link: "/plumber" },
-  { id: 4, name: "পশু চিকিৎসক", icon: <Stethoscope />, color: "bg-red-100 text-red-600", link: "/vet-doctor" },
-  { id: 5, name: "মাস্টার/শিক্ষক", icon: <GraduationCap />, color: "bg-emerald-100 text-emerald-600", link: "/teacher" },
-  { id: 6, name: "হোমিও ডাক্তার", icon: <FlaskConical />, color: "bg-purple-100 text-purple-600", link: "/homeo-doctor" },
-  { id: 7, name: "ভ্যান ও অটোরিকশা", icon: <Truck />, color: "bg-blue-100 text-blue-600", link: "/van" },
-  { id: 8, name: "ইলেকট্রিশিয়ান", icon: <Zap />, color: "bg-yellow-100 text-yellow-600", link: "/electrician" },
-  { id: 9, name: "ইলেকট্রনিক্স মেকার", icon: <Radio />, color: "bg-indigo-100 text-indigo-600", link: "/electronics-maker" },
-  { id: 10, name: "মোটরসাইকেল মেকার", icon: <Bike />, color: "bg-gray-100 text-gray-700", link: "/bike-repair" },
-  { id: 11, name: "মেশিন মেকার", icon: <Settings />, color: "bg-zinc-100 text-zinc-600", link: "/machine-repair" },
-  { id: 12, name: "ভ্যান-সাইকেল মেকার", icon: <Box />, color: "bg-teal-100 text-teal-600", link: "/cycle-van-repair" },
-  { id: 13, name: "খেজুরের রস", icon: <Trees />, color: "bg-amber-100 text-amber-800", link: "/khejurer-ros" },
-  { id: 14, name: "কৃষক পরামর্শ", icon: <Sprout />, color: "bg-green-100 text-green-600", link: "/farmer" },
-  { id: 15, name: "গৃহস্থালি সাহায্য", icon: <Home />, color: "bg-rose-100 text-rose-600", link: "/household-help" },
-  { id: 16, name: "দর্জি (টেইলার্স)", icon: <Scissors />, color: "bg-pink-100 text-pink-600", link: "/tailors" },
+  { id: 1, name: "রাজমিস্ত্রি", icon: <Hammer />, color: "bg-orange-100 text-orange-600", link: "/services?category=রাজমিস্ত্রি" },
+  { id: 2, name: "ওয়েল্ডিং মিস্ত্রি", icon: <Wrench />, color: "bg-slate-100 text-slate-600", link: "/services?category=ওয়েল্ডিং মিস্ত্রি" },
+  { id: 3, name: "প্লাম্বার", icon: <Droplets />, color: "bg-cyan-100 text-cyan-600", link: "/services?category=প্লাম্বার" },
+  { id: 4, name: "পশু চিকিৎসক", icon: <Stethoscope />, color: "bg-red-100 text-red-600", link: "/services?category=পশু চিকিৎসক" },
+  { id: 5, name: "মাস্টার/শিক্ষক", icon: <GraduationCap />, color: "bg-emerald-100 text-emerald-600", link: "/services?category=মাস্টার / গৃহশিক্ষক" },
+  { id: 6, name: "হোমিও ডাক্তার", icon: <FlaskConical />, color: "bg-purple-100 text-purple-600", link: "/services?category=হোমিও ডাক্তার" },
+  { id: 7, name: "ভ্যান ও অটোরিকশা", icon: <Truck />, color: "bg-blue-100 text-blue-600", link: "/services?category=ভ্যান ও অটো সার্ভিস" },
+  { id: 8, name: "ইলেকট্রিশিয়ান", icon: <Zap />, color: "bg-yellow-100 text-yellow-600", link: "/services?category=ইলেকট্রিশিয়ান" },
+  { id: 9, name: "ইলেকট্রনিক্স মেকার", icon: <Radio />, color: "bg-indigo-100 text-indigo-600", link: "/services?category=ইলেকট্রনিক্স মেকার" },
+  { id: 10, name: "মোটরসাইকেল মেকার", icon: <Bike />, color: "bg-gray-100 text-gray-700", link: "/services?category=মোটরসাইকেল মেকার" },
+  { id: 11, name: "মেশিন মেকার", icon: <Settings />, color: "bg-zinc-100 text-zinc-600", link: "/services?category=মেশিন ও হাল মেকার" },
+  { id: 12, name: "ভ্যান-সাইকেল মেকার", icon: <Box />, color: "bg-teal-100 text-teal-600", link: "/services?category=ভ্যান ও সাইকেল মেকার" },
+  { id: 13, name: "খেজুরের রস", icon: <Trees />, color: "bg-amber-100 text-amber-800", link: "/services?category=খেজুরের রস" },
+  { id: 14, name: "কৃষি শ্রমিক", icon: <Sprout />, color: "bg-green-100 text-green-600", link: "/services?category=কৃষি শ্রমিক" },
+  { id: 15, name: "কৃষক", icon: <Home />, color: "bg-rose-100 text-rose-600", link: "/services?category=কৃষক / কৃষি উদ্যোক্তা" },
+  { id: 16, name: "দর্জি (টেইলার্স)", icon: <Scissors />, color: "bg-pink-100 text-pink-600", link: "/services?category=দর্জি / টেইলার্স" },
 ];
 
 export default function CategoryGrid() {
