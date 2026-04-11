@@ -4,55 +4,47 @@ import { NextResponse } from "next/server";
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: Request) {
+export async function GET(request: any) {
   try {
+    // ১. URL থেকে Query Parameters (category এবং search) বের করা
     const { searchParams } = new URL(request.url);
-    // decodeURIComponent ব্যবহার করা হয়েছে যাতে ব্রাউজার থেকে আসা বাংলা টেক্সট ঠিক থাকে
-    const searchQuery = decodeURIComponent(searchParams.get("search") || "").trim();
-    const categoryQuery = decodeURIComponent(searchParams.get("category") || "All");
+    const category = searchParams.get("category");
+    const searchTerm = searchParams.get("search"); // আপনি চাইলে 'query' ও ব্যবহার করতে পারেন
 
-    const collectionsToFetch = Object.values(collectionName);
+    // ২. ডেটাবেস কানেকশন
+    const collection = await dbConnect(collectionName.ALL as string);
 
-    const allCollectionsData = await Promise.all(
-      collectionsToFetch.map(async (col) => {
-        try {
-          const collection = await dbConnect(col as string);
-          return await collection.find({}).toArray();
-        } catch (err) {
-          console.error(`Error fetching from ${col}:`, err);
-          return [];
-        }
-      })
-    );
+    // ৩. ডাইনামিক MongoDB কুয়েরি অবজেক্ট তৈরি
+    const dbQuery:any = {};
 
-    const allServices = allCollectionsData.flat();
+    // যদি URL-এ category থাকে, তাহলে কুয়েরিতে তা যোগ করা হবে
+    if (category) {
+      dbQuery.category = category;
+    }
 
-    const filteredData = allServices.filter((service: any) => {
-      // ১. ক্যাটাগরি ফিল্টার
-      const matchesCategory = 
-        categoryQuery === "All" || 
-        service.category === categoryQuery;
+    // যদি search term থাকে, তাহলে বিভিন্ন ফিল্ডের উপর রেগুলার এক্সপ্রেশন (Regex) দিয়ে সার্চ হবে
+    if (searchTerm) {
+      // $or মানে হলো নিচের যেকোনো একটি ফিল্ডের সাথে মিললেই ডেটা রিটার্ন করবে
+      dbQuery.$or = [
+        { name: { $regex: searchTerm, $options: "i" } }, // নামের মধ্যে খুঁজবে
+        { phone: { $regex: searchTerm, $options: "i" } }, // ফোন নাম্বারে খুঁজবে
+        { category: { $regex: searchTerm, $options: "i" } }, // ক্যাটাগরিতে খুঁজবে
+        { nickName: { $regex: searchTerm, $options: "i" } }, // ডাকনামে খুঁজবে
+        { speciality: { $regex: searchTerm, $options: "i" } }, // স্পেশালিটির মধ্যে খুঁজবে
+        { location: { $regex: searchTerm, $options: "i" } } // ঠিকানায় খুঁজবে
+      ];
+    }
 
-      // ২. বাংলা সার্চ লজিক (Case sensitive ইস্যু এড়াতে এবং নিখুঁত ম্যাচ করতে)
-      if (!searchQuery) return matchesCategory;
+    // ৪. তৈরিকৃত কুয়েরি (dbQuery) এর উপর ভিত্তি করে ডেটা ফেচ করা
+    const data = await collection.find(dbQuery).toArray();
 
-      const matchesSearch = 
-        service.name?.includes(searchQuery) ||
-        service.phone?.includes(searchQuery) ||
-        service.category?.includes(searchQuery) ||
-        service.serviceType?.includes(searchQuery) ||
-        (Array.isArray(service.speciality) && 
-          service.speciality.some((s: string) => s.includes(searchQuery)));
-
-      return matchesCategory && matchesSearch;
-    });
-
-    return NextResponse.json(filteredData);
+    // ৫. ডেটা রিটার্ন করা
+    return NextResponse.json(data);
 
   } catch (error: any) {
-    console.error("API Error:", error);
+    console.error("Fetch Error:", error);
     return NextResponse.json(
-      { error: "Internal Server Error", details: error.message }, 
+      { error: "Failed to fetch data" }, 
       { status: 500 }
     );
   }
