@@ -27,6 +27,7 @@ type FormValues = {
   details: string;
   image: FileList;
 };
+const IMGBB_API_KEY: string = "a12cb4282eb5ab6a774c1285444eaaa1";
 
 export default function AddServicePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,7 +37,6 @@ export default function AddServicePage() {
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    const IMGBB_API_KEY: string = "a12cb4282eb5ab6a774c1285444eaaa1";
     
     try {
       // ১. ছবি আপলোড লজিক (ImgBB)
