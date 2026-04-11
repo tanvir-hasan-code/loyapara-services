@@ -15,7 +15,7 @@ export async function GET(request: any) {
     const collection = await dbConnect(collectionName.ALL as string);
 
     // ৩. ডাইনামিক MongoDB কুয়েরি অবজেক্ট তৈরি
-    const dbQuery:any = {};
+    const dbQuery: Record<string, any> = {};
 
     // যদি URL-এ category থাকে, তাহলে কুয়েরিতে তা যোগ করা হবে
     if (category) {
