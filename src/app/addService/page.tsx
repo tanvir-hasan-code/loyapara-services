@@ -16,7 +16,7 @@ const categories = [
   "ভ্যান ও সাইকেল মেকার", "খেজুরের রস", "কৃষক (পরামর্শ ও শ্রমিক)", "গৃহস্থ", "দর্জি (টেইলার্স)"
 ];
 
-// const IMGBB_API_KEY = "58e5789c1d307aea309a043927f4f662";
+const IMGBB_API_KEY = "a12cb4282eb5ab6a774c1285444eaaa1";
 
 type FormValues = {
   name: string;
