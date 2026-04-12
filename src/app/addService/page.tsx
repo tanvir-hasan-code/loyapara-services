@@ -27,7 +27,7 @@ type FormValues = {
   details: string;
   image: FileList;
 };
-const IMGBB_API_KEY: string = "a12cb4282eb5ab6a774c1285444eaaa1";
+// const IMGBB_API_KEY: string = "a12cb4282eb5ab6a774c1285444eaaa1";
 
 export default function AddServicePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -45,7 +45,7 @@ export default function AddServicePage() {
         const imageFormData = new FormData();
         imageFormData.append("image", data.image[0]);
         
-        const response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+        const response = await fetch(`https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`, {
           method: "POST",
           body: imageFormData,
         });
