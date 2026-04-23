@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
-  // ১. মোড নিশ্চিত করা (Optional but helpful)
+// daisyui এর জন্য টাইপ এরর হ্যান্ডেল করতে আমরা 'any' বা কাস্টম ইন্টারফেস ব্যবহার করতে পারি
+const config: Config | any = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,16 +9,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // ২. আপনি চাইলে এখানে আপনার প্রিয় কালারগুলো সেভ করে রাখতে পারেন
       colors: {
         'brand-teal': '#0d9488',
       },
     },
   },
   plugins: [require("daisyui")],
-  // ৩. ডেইজিইউআই থিম যদি সাদা রাখতে চান
+  // ডেইজিইউআই থিম কনফিগারেশন
   daisyui: {
     themes: ["light"], 
   },
 };
+
 export default config;
